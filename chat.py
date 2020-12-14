@@ -66,9 +66,6 @@ if __name__ == "__main__":
         print()
         print()
         my_name = input('Who am I?: ')
-        if not ports.get(my_name):
-            print('Wrong name.')
-            continue
 
         me_start = input('Would you like to start a chat with someone? [Y] Chat or [N] Wait for someone: ')
         if 'y' in me_start.lower():
@@ -84,7 +81,7 @@ if __name__ == "__main__":
             friend_ip, friend_port = ask_dns(friend_name)
 
             if not friend_ip:
-                print('The DNS server could not find that user.')
+                print('The DNS server could not find that person.')
                 continue
 
             p1 = 17
@@ -96,7 +93,6 @@ if __name__ == "__main__":
             soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
             soc.connect((friend_ip, friend_port))
-            # soc.setblocking(False)
 
             soc.send(my_name.encode('utf-8'))
             recv_name = soc.recv(msg_length).decode('utf-8')

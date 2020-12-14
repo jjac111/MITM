@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b12a019a-5c5d-4130-9543-760a5779df7c" name="Default Changelist" comment="" />
+    <list default="true" id="b12a019a-5c5d-4130-9543-760a5779df7c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dns_config - copy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/evil_chat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,8 +21,12 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="JupyterTrust" id="68c77e98-d7bf-4b6d-81bf-239270db9c2e" />
   <component name="ProjectId" id="1lQXKfvjrKHmUSibL9TyEiJuQWv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -23,11 +34,17 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/dns.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mitm_chat.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.chat">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\JuanJavier\GitHub\MITM" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.evil chat">
     <configuration name="chat" type="PythonConfigurationType" factoryName="Python">
       <module name="MITM" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -72,8 +89,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="evil chat" type="PythonConfigurationType" factoryName="Python">
+      <module name="MITM" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\envs\MITM\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\JuanJavier\GitHub\MITM\evil_chat.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.chat" />
+      <item itemvalue="Python.evil chat" />
       <item itemvalue="Python.dns" />
     </list>
   </component>
@@ -89,7 +129,7 @@
       <updated>1607530225826</updated>
       <workItem from="1607530269552" duration="15494000" />
       <workItem from="1607620659760" duration="74000" />
-      <workItem from="1607886803571" duration="3257000" />
+      <workItem from="1607886803571" duration="14166000" />
     </task>
     <servers />
   </component>
@@ -97,34 +137,34 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="137" y="27" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607889463491">
+    <state x="137" y="27" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607901532659">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="137" y="27" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1607889463491" />
-    <state x="439" y="179" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607541064754">
+    <state x="137" y="27" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1607901532659" />
+    <state x="439" y="179" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607891968793">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="439" y="179" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1607541064754" />
-    <state x="463" y="127" key="FileChooserDialogImpl" timestamp="1607889461230">
+    <state x="439" y="179" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1607891968793" />
+    <state x="463" y="127" key="FileChooserDialogImpl" timestamp="1607901531135">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="463" y="127" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1607889461230" />
-    <state width="1323" height="227" key="GridCell.Tab.0.bottom" timestamp="1607889632125">
+    <state x="463" y="127" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1607901531135" />
+    <state width="1323" height="182" key="GridCell.Tab.0.bottom" timestamp="1607901675329">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607889632125" />
-    <state width="1323" height="227" key="GridCell.Tab.0.center" timestamp="1607889632125">
+    <state width="1323" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607901675329" />
+    <state width="1323" height="182" key="GridCell.Tab.0.center" timestamp="1607901675329">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1607889632125" />
-    <state width="1323" height="227" key="GridCell.Tab.0.left" timestamp="1607889632125">
+    <state width="1323" height="182" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1607901675329" />
+    <state width="1323" height="182" key="GridCell.Tab.0.left" timestamp="1607901675329">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1607889632125" />
-    <state width="1323" height="227" key="GridCell.Tab.0.right" timestamp="1607889632125">
+    <state width="1323" height="182" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1607901675329" />
+    <state width="1323" height="182" key="GridCell.Tab.0.right" timestamp="1607901675329">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1607889632125" />
+    <state width="1323" height="182" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1607901675329" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1607889632126">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -150,19 +190,9 @@
     </state>
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1607550388686" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/dns.py</url>
-          <line>5</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/MITM$dns.coverage" NAME="dns Coverage Results" MODIFIED="1607889520934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MITM$chat.coverage" NAME="chat Coverage Results" MODIFIED="1607889401624" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MITM$evil_chat.coverage" NAME="evil chat Coverage Results" MODIFIED="1607901675319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
