@@ -14,7 +14,7 @@ class DH_exchanger(object):
         partial_key = partial_key % self.p2
         return partial_key
 
-    def generate_key(self, friend_partial_key):
+    def generate_full_key(self, friend_partial_key):
 		# With the received partial key, generate the full key, which is the same for both users.
         key = friend_partial_key ** self.private
         key = key % self.p2
