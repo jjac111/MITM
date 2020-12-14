@@ -1,5 +1,5 @@
 import socket
-from config import dns_ip, ports, msg_length
+from config import my_ip, ports, msg_length
 
 
 def handle_request(req_soc):
@@ -20,7 +20,7 @@ class DNS(object):
     def start(self):
         soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        soc.bind((dns_ip, ports['dns']))
+        soc.bind((my_ip, ports['dns']))
         soc.listen()
         print('Waiting for DNS requests...')
         while True:
