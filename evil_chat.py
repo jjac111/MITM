@@ -1,6 +1,6 @@
 import socket
 import paramiko
-from config import dns_ip, mitm_ip, ports, msg_length
+from config import *
 from diffie_hellman import DH_exchanger
 
 
