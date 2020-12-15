@@ -19,24 +19,25 @@ def ask_dns(name):
 
 
 class Chat(object):
-    def __init__(self, me_start, soc, my_name, friend_name, dh):
+    def __init__(self, me_start, soc, my_name, friend_name, dh, encrypt=True):
         self.me_start = me_start
         self.soc = soc
         self.my_name = my_name
         self.friend_name = friend_name
         self.dh = dh
+        self.encrypt = encrypt
 
     def send(self):
         msg = input(f'{self.my_name.ljust(10)}: ')
         msg_encrypted = self.dh.encrypt(msg.encode('utf-8'))
-        self.soc.send(msg_encrypted)
+        self.soc.send(msg_encrypted if self.encrypt else msg)
         if 'exit' == msg:
             return True
 
     def receive(self):
         msg = self.soc.recv(msg_length)
-        msg = self.dh.decrypt(msg).decode('utf-8')
-        print(f'{self.friend_name.ljust(10)}: {msg}')
+        msg_decrypted = self.dh.decrypt(msg).decode('utf-8')
+        print(f'{self.friend_name.ljust(10)}: {msg_decrypted if self.encrypt else msg}')
         if 'exit' == msg:
             return True
 
@@ -75,6 +76,8 @@ if __name__ == "__main__":
         else:
             print('Wrong answer.')
             continue
+
+        encrypt_always = input('Do you want to encrypt your messages? [Y/N]: ')
 
         if me_start:
             friend_name = input('Who would you like to chat with?: ')
@@ -140,6 +143,6 @@ if __name__ == "__main__":
             dh.generate_full_key(friend_partial_key)
             print(f'DIFFIE HELLMAN COMPLETE!\n')
 
-        chat = Chat(me_start=me_start, soc=soc, my_name=my_name, friend_name=friend_name, dh=dh)
+        chat = Chat(me_start=me_start, soc=soc, my_name=my_name, friend_name=friend_name, dh=dh, encrypt=encrypt_always)
 
         chat.start()

@@ -6,7 +6,7 @@ from diffie_hellman import DH_exchanger
 
 class Evil_Chat(object):
 
-    def __init__(self):
+    def __init__(self, encrypt=True):
         self.dns_table = {}
         self.dh1 = None
         self.dh2 = None
@@ -15,6 +15,7 @@ class Evil_Chat(object):
         self.v1_name = None
         self.v2_name = None
         self.private = 123456
+        self.encrypt = encrypt
 
     def undo_attack(self):
         # Rewrite the original data back to the file
@@ -118,24 +119,26 @@ class Evil_Chat(object):
 
     def send_v1(self, msg):
         msg_encrypted = self.dh1.encrypt(msg.encode('utf-8'))
-        self.v1_soc.send(msg_encrypted)
+        self.v1_soc.send(msg_encrypted if self.encrypt else msg)
         if 'exit' == msg:
             return True
 
     def receive_v1(self):
         msg = self.v1_soc.recv(msg_length)
-        msg = self.dh1.decrypt(msg).decode('utf-8')
-        print(f'{self.v1_name.ljust(10)}: {msg}')
+        msg_decrypted = self.dh1.decrypt(msg).decode('utf-8')
+        print(f'{self.v1_name.ljust(10)}: {msg_decrypted if self.encrypt else msg}')
         return msg
 
     def send_v2(self, msg):
         msg_encrypted = self.dh2.encrypt(msg.encode('utf-8'))
-        self.v2_soc.send(msg_encrypted)
+        self.v2_soc.send(msg_encrypted if self.encrypt else msg)
+        if 'exit' == msg:
+            return True
 
     def receive_v2(self):
         msg = self.v2_soc.recv(msg_length)
-        msg = self.dh2.decrypt(msg).decode('utf-8')
-        print(f'{self.v2_name.ljust(10)}: {msg}')
+        msg_decrypted = self.dh2.decrypt(msg).decode('utf-8')
+        print(f'{self.v2_name.ljust(10)}: {msg_decrypted if self.encrypt else msg}')
         return msg
 
     def do_evil_chat(self, mirror_chat):
@@ -190,5 +193,6 @@ class Evil_Chat(object):
 
 
 if __name__ == '__main__':
-    attacker = Evil_Chat()
+    encrypt_always = input('Do you want to encrypt the messages? [Y/N]: ')
+    attacker = Evil_Chat(encrypt=encrypt_always)
     attacker.start()
