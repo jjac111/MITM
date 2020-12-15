@@ -1,6 +1,5 @@
 import socket
 import paramiko
-from scp import SCPClient
 from config import dns_ip, mitm_ip, ports, msg_length
 from diffie_hellman import DH_exchanger
 
