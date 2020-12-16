@@ -119,12 +119,13 @@ class Evil_Chat(object):
 
     def send_v1(self, msg):
         msg = msg.encode('utf-8')
+        exit = True if 'exit' == msg else False
         if self.encrypt:
             msg = self.dh1.encrypt(msg)
         else:
             msg = msg.encode("utf-8")
         self.v1_soc.send(msg)
-        if 'exit' == msg.decode('utf-8'):
+        if exit:
             return True
 
     def receive_v1(self):
@@ -138,12 +139,13 @@ class Evil_Chat(object):
 
     def send_v2(self, msg):
         msg = msg.encode('utf-8')
+        exit = True if 'exit' == msg else False
         if self.encrypt:
             msg = self.dh2.encrypt(msg)
         else:
             msg = msg.encode("utf-8")
         self.v2_soc.send(msg)
-        if 'exit' == msg.decode('utf-8'):
+        if exit:
             return True
 
     def receive_v2(self):
@@ -174,7 +176,7 @@ class Evil_Chat(object):
                     msg = input(f'To {self.v1_name}: ')
                     self.send_v1(msg)
         except Exception as e:
-            #raise e
+            # raise e
             pass
         finally:
             self.undo_attack()
