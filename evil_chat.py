@@ -193,6 +193,6 @@ class Evil_Chat(object):
 
 
 if __name__ == '__main__':
-    encrypt_always = input('Do you want to encrypt the messages? [Y/N]: ')
+    encrypt_always = True if 'y' in input('Do you want to encrypt the messages? [Y/N]: ').lower() else False
     attacker = Evil_Chat(encrypt=encrypt_always)
     attacker.start()

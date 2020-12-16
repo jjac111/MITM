@@ -77,7 +77,7 @@ if __name__ == "__main__":
             print('Wrong answer.')
             continue
 
-        encrypt_always = input('Do you want to encrypt your messages? [Y/N]: ')
+        encrypt_always = True if 'y' in input('Do you want to encrypt your messages? [Y/N]: ').lower() else False
 
         if me_start:
             friend_name = input('Who would you like to chat with?: ')
