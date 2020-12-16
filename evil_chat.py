@@ -118,12 +118,10 @@ class Evil_Chat(object):
         self.v2_soc = v2_soc
 
     def send_v1(self, msg):
-        msg = msg.encode('utf-8')
         exit = True if 'exit' == msg else False
+        msg = msg.encode('utf-8')
         if self.encrypt:
             msg = self.dh1.encrypt(msg)
-        else:
-            msg = msg.encode("utf-8")
         self.v1_soc.send(msg)
         if exit:
             return True
@@ -138,12 +136,10 @@ class Evil_Chat(object):
         return msg
 
     def send_v2(self, msg):
-        msg = msg.encode('utf-8')
         exit = True if 'exit' == msg else False
+        msg = msg.encode('utf-8')
         if self.encrypt:
             msg = self.dh2.encrypt(msg)
-        else:
-            msg = msg.encode("utf-8")
         self.v2_soc.send(msg)
         if exit:
             return True
