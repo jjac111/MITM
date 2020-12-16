@@ -36,7 +36,8 @@ class Chat(object):
 
     def receive(self):
         msg = self.soc.recv(msg_length)
-        msg_decrypted = self.dh.decrypt(msg).decode('utf-8')
+        if self.encrypt:
+            msg_decrypted = self.dh.decrypt(msg).decode('utf-8')
         print(f'{self.friend_name.ljust(10)}: {msg_decrypted if self.encrypt else msg.decode("utf-8")}')
         if 'exit' == msg:
             return True
