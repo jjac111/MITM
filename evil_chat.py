@@ -126,7 +126,7 @@ class Evil_Chat(object):
     def receive_v1(self):
         msg = self.v1_soc.recv(msg_length)
         if self.encrypt:
-            msg_decrypted = self.dh.decrypt(msg).decode('utf-8')
+            msg_decrypted = self.dh1.decrypt(msg).decode('utf-8')
         print(f'{self.v1_name.ljust(10)}: {msg_decrypted if self.encrypt else msg.decode("utf-8")}')
         return msg
 
@@ -139,7 +139,7 @@ class Evil_Chat(object):
     def receive_v2(self):
         msg = self.v2_soc.recv(msg_length)
         if self.encrypt:
-            msg_decrypted = self.dh.decrypt(msg).decode('utf-8')
+            msg_decrypted = self.dh2.decrypt(msg).decode('utf-8')
         print(f'{self.v2_name.ljust(10)}: {msg_decrypted if self.encrypt else msg.decode("utf-8")}')
         return msg
 
