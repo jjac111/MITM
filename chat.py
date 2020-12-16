@@ -28,9 +28,9 @@ class Chat(object):
         self.encrypt = encrypt
 
     def send(self):
-        msg = input(f'{self.my_name.ljust(10)}: ').encode('utf-8')
-        msg_encrypted = self.dh.encrypt(msg)
-        self.soc.send(msg_encrypted if self.encrypt else msg)
+        msg = input(f'{self.my_name.ljust(10)}: ')
+        msg_encrypted = self.dh.encrypt(msg.encode('utf-8'))
+        self.soc.send(msg_encrypted if self.encrypt else msg.encode('utf-8'))
         if 'exit' == msg:
             return True
 
