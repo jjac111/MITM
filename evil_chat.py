@@ -149,7 +149,7 @@ class Evil_Chat(object):
             return True
 
     def receive_v2(self):
-        msg = self.v2_soc.recv(msg_length).decode("utf-8")
+        msg = self.v2_soc.recv(msg_length)
         if self.encrypt:
             msg = self.dh2.decrypt(msg).decode('utf-8')
         else:
