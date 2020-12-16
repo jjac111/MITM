@@ -118,31 +118,33 @@ class Evil_Chat(object):
         self.v2_soc = v2_soc
 
     def send_v1(self, msg):
+        msg = msg.encode('utf-8')
         if self.encrypt:
-            msg_encrypted = self.dh1.encrypt(msg)
-        self.v1_soc.send(msg_encrypted if self.encrypt else msg)
-        if 'exit' == msg:
+            msg = self.dh1.encrypt(msg)
+        self.v1_soc.send(msg)
+        if 'exit' == msg.decode('utf-8'):
             return True
 
     def receive_v1(self):
-        msg = self.v1_soc.recv(msg_length)
+        msg = self.v1_soc.recv(msg_length).decode("utf-8")
         if self.encrypt:
-            msg_decrypted = self.dh1.decrypt(msg).decode('utf-8')
-        print(f'{self.v1_name.ljust(10)}: {msg_decrypted if self.encrypt else msg.decode("utf-8")}')
+            msg = self.dh1.decrypt(msg.encode('utf-8')).decode('utf-8')
+        print(f'{self.v1_name.ljust(10)}: {msg}')
         return msg
 
     def send_v2(self, msg):
+        msg = msg.encode('utf-8')
         if self.encrypt:
-            msg_encrypted = self.dh2.encrypt(msg)
-        self.v2_soc.send(msg_encrypted if self.encrypt else msg)
-        if 'exit' == msg:
+            msg = self.dh2.encrypt(msg)
+        self.v2_soc.send(msg)
+        if 'exit' == msg.decode('utf-8'):
             return True
 
     def receive_v2(self):
-        msg = self.v2_soc.recv(msg_length)
+        msg = self.v2_soc.recv(msg_length).decode("utf-8")
         if self.encrypt:
-            msg_decrypted = self.dh2.decrypt(msg).decode('utf-8')
-        print(f'{self.v2_name.ljust(10)}: {msg_decrypted if self.encrypt else msg.decode("utf-8")}')
+            msg = self.dh2.decrypt(msg.encode('utf-8')).decode('utf-8')
+        print(f'{self.v2_name.ljust(10)}: {msg}')
         return msg
 
     def do_evil_chat(self, mirror_chat):
@@ -155,13 +157,13 @@ class Evil_Chat(object):
                     self.send_v1(msg)
             else:
                 while True:
-                    msg = self.receive_v1()
+                    self.receive_v1()
                     # we change the message
-                    msg = input(f'write to {self.v2_name}: ')
+                    msg = input(f'To {self.v2_name}: ')
                     self.send_v2(msg)
                     # we change the message
-                    msg = self.receive_v2()
-                    msg = input(f'write to {self.v1_name}: ')
+                    self.receive_v2()
+                    msg = input(f'To {self.v1_name}: ')
                     self.send_v1(msg)
         except Exception as e:
             #raise e
