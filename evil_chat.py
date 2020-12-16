@@ -162,7 +162,7 @@ class Evil_Chat(object):
                     msg = input(f'write to {self.v1_name}: ')
                     self.send_v1(msg)
         except Exception as e:
-            print(e)
+            raise e
         finally:
             self.undo_attack()
 
