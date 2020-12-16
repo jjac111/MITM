@@ -28,8 +28,8 @@ class Chat(object):
         self.encrypt = encrypt
 
     def send(self):
-        msg = input(f'{self.my_name.ljust(10)}: ')
-        msg_encrypted = self.dh.encrypt(msg.encode('utf-8'))
+        msg = input(f'{self.my_name.ljust(10)}: ').encode('utf-8')
+        msg_encrypted = self.dh.encrypt(msg)
         self.soc.send(msg_encrypted if self.encrypt else msg)
         if 'exit' == msg:
             return True
@@ -37,7 +37,7 @@ class Chat(object):
     def receive(self):
         msg = self.soc.recv(msg_length)
         msg_decrypted = self.dh.decrypt(msg).decode('utf-8')
-        print(f'{self.friend_name.ljust(10)}: {msg_decrypted if self.encrypt else msg}')
+        print(f'{self.friend_name.ljust(10)}: {msg_decrypted if self.encrypt else msg.decode("utf-8")}')
         if 'exit' == msg:
             return True
 

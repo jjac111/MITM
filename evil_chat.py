@@ -119,26 +119,26 @@ class Evil_Chat(object):
 
     def send_v1(self, msg):
         msg_encrypted = self.dh1.encrypt(msg.encode('utf-8'))
-        self.v1_soc.send(msg_encrypted if self.encrypt else msg)
+        self.v1_soc.send(msg_encrypted if self.encrypt else msg.encode('utf-8'))
         if 'exit' == msg:
             return True
 
     def receive_v1(self):
         msg = self.v1_soc.recv(msg_length)
         msg_decrypted = self.dh1.decrypt(msg).decode('utf-8')
-        print(f'{self.v1_name.ljust(10)}: {msg_decrypted if self.encrypt else msg}')
+        print(f'{self.v1_name.ljust(10)}: {msg_decrypted if self.encrypt else msg.decode("utf-8")}')
         return msg
 
     def send_v2(self, msg):
         msg_encrypted = self.dh2.encrypt(msg.encode('utf-8'))
-        self.v2_soc.send(msg_encrypted if self.encrypt else msg)
+        self.v2_soc.send(msg_encrypted if self.encrypt else msg.encode('utf-8'))
         if 'exit' == msg:
             return True
 
     def receive_v2(self):
         msg = self.v2_soc.recv(msg_length)
         msg_decrypted = self.dh2.decrypt(msg).decode('utf-8')
-        print(f'{self.v2_name.ljust(10)}: {msg_decrypted if self.encrypt else msg}')
+        print(f'{self.v2_name.ljust(10)}: {msg_decrypted if self.encrypt else msg.decode("utf-8")}')
         return msg
 
     def do_evil_chat(self, mirror_chat):
