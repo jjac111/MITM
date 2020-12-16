@@ -121,6 +121,8 @@ class Evil_Chat(object):
         msg = msg.encode('utf-8')
         if self.encrypt:
             msg = self.dh1.encrypt(msg)
+        else:
+            msg = msg.encode("utf-8")
         self.v1_soc.send(msg)
         if 'exit' == msg.decode('utf-8'):
             return True
@@ -138,6 +140,8 @@ class Evil_Chat(object):
         msg = msg.encode('utf-8')
         if self.encrypt:
             msg = self.dh2.encrypt(msg)
+        else:
+            msg = msg.encode("utf-8")
         self.v2_soc.send(msg)
         if 'exit' == msg.decode('utf-8'):
             return True
