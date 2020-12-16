@@ -119,7 +119,7 @@ class Evil_Chat(object):
 
     def send_v1(self, msg):
         if self.encrypt:
-            msg_encrypted = self.dh1.encrypt(msg.encode('utf-8'))
+            msg_encrypted = self.dh1.encrypt(msg)
         self.v1_soc.send(msg_encrypted if self.encrypt else msg)
         if 'exit' == msg:
             return True
@@ -133,7 +133,7 @@ class Evil_Chat(object):
 
     def send_v2(self, msg):
         if self.encrypt:
-            msg_encrypted = self.dh2.encrypt(msg.encode('utf-8'))
+            msg_encrypted = self.dh2.encrypt(msg)
         self.v2_soc.send(msg_encrypted if self.encrypt else msg)
         if 'exit' == msg:
             return True
